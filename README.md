@@ -2,7 +2,8 @@
 
 Create a file called `application.properties` in the resources under `service-oa` module.
 
-`application.properties`: write your database information in this file
+`application.properties`: write your database information in this file.
+
 ![service-oa file structure](./note_assets/image.png)
 
 ```properties
