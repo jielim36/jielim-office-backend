@@ -23,5 +23,7 @@ public class SysRole extends BaseEntity {
 	//描述
 	@TableField("description")
 	private String description;
+
+
 }
 
