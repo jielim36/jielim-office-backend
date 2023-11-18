@@ -6,11 +6,15 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jielim.auth.service.SysUserService;
 import com.jielim.common.result.Result;
 import com.office.model.system.SysUser;
+import com.office.vo.system.AssignRoleVo;
 import com.office.vo.system.SysUserQueryVo;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -77,12 +81,21 @@ public class SysUserController {
         return (isSuccess ? Result.ok() : Result.fail());
     }
 
-    @Operation(summary = "update user by id")
+    @Operation(summary = "remove user by id")
     @DeleteMapping("/{id}")
     public Result deleteUserById(@PathVariable Long id){
         boolean isSuccess = sysUserService.removeById(id);
         return (isSuccess ? Result.ok() : Result.fail());
     }
+
+    @Operation(summary = "batch remove user")
+    @DeleteMapping("")
+    public Result batchDeleteUser(@RequestBody List<Long> idList){
+        boolean isSuccess = sysUserService.removeByIds(idList);
+        return (isSuccess ? Result.ok() : Result.fail());
+    }
+
+
 
 
 

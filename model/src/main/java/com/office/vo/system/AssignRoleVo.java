@@ -6,10 +6,10 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AssginMenuVo {
+public class AssignRoleVo {
 
-    private Long roleId;
+    private Long userId;
 
-    private List<Long> menuIdList;
+    private List<Long> roleIdList;
 
 }

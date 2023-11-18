@@ -7,6 +7,7 @@ import com.jielim.common.config.exception.JielimException;
 import com.jielim.common.result.Result;
 import com.jielim.auth.service.SysRoleService;
 import com.office.model.system.SysRole;
+import com.office.vo.system.AssignRoleVo;
 import com.office.vo.system.SysRoleQueryVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Tag(name = "SysRole Controller")
 @RestController
@@ -129,6 +131,20 @@ public class SysRoleController {
         return (is_success ? Result.ok() : Result.fail());
     }
 
+
+    @Operation(summary = "Get User with user role")
+    @GetMapping("/user/{userId}")
+    public Result UserRole(@PathVariable Long userId){
+        Map<String, Object> roleMapByUserId = sysRoleService.findRoleByUserId(userId);
+        return Result.ok(roleMapByUserId);
+    }
+
+    @Operation(summary = "Get User with user role")
+    @GetMapping("/role/{id}")
+    public Result assignUserRole(@RequestBody AssignRoleVo assignRoleVo){
+        sysRoleService.assignUserRole(assignRoleVo);
+        return Result.ok();
+    }
 
 
 
