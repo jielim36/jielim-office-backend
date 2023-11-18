@@ -11,14 +11,15 @@ This is a **office management system** that provides a backend administrator sys
 
 > [Go Frontend Repository](https://github.com/jielim36/jielim-office-frontend)
 
----
+<br>
 
 # Tech Stack
 **Backend:** SpringBoot, MyBatisPlus, SpringSecurity, Redis, and MySQL.
 
 **Frontend ([Go frontend Repo](https://github.com/jielim36/jielim-office-frontend)):** React.js, Antd UI Library, and Axios.
 
----
+<br>
+
 # Application Screenshot
 
 ### Knife4j API Test
@@ -33,7 +34,7 @@ Still under development...
 ### Employee Side
 Still under development...
 
-
+<br>
 
 # Configuration
 
