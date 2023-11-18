@@ -19,6 +19,7 @@ This is a **office management system** that provides a backend administrator sys
 **Frontend ([Go frontend Repo](https://github.com/jielim36/jielim-office-frontend)):** React.js, Antd UI Library, and Axios.
 
 ---
+# Application Screenshot
 
 ### Knife4j API Test
 Utilize [Knife4j](https://doc.xiaominfo.com/docs/quick-start) (Integration with Swagger2 and OpenAPI3) to simplify API development for users, teams, and enterprises.
@@ -29,7 +30,7 @@ You may access the URL: `http://localhost:8800/doc.html` to visit the API testin
 Still under development...
 ![Admin Side](./github_assets/admin_side.png)
 
-#### Employee Side
+### Employee Side
 Still under development...
 
 
@@ -42,6 +43,7 @@ Create a file called `application.properties` in the resources under `service-oa
 
 ![service-oa file structure](./github_assets/service-oa_file_structure.png)
 
+Write your database information to this file.
 ```properties
 datasource.url=jdbc:mysql://ipAddress:portNumber/databaseName?serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf-8 
 # example: jdbc:mysql://localhost:3306/jielim-office?serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf-8
