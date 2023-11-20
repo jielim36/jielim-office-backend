@@ -139,8 +139,8 @@ public class SysRoleController {
         return Result.ok(roleMapByUserId);
     }
 
-    @Operation(summary = "Get User with user role")
-    @GetMapping("/role/{id}")
+    @Operation(summary = "Assign User Role")
+    @PutMapping("/role")
     public Result assignUserRole(@RequestBody AssignRoleVo assignRoleVo){
         sysRoleService.assignUserRole(assignRoleVo);
         return Result.ok();

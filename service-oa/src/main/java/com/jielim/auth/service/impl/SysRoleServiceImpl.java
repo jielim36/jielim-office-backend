@@ -10,6 +10,7 @@ import com.office.model.system.SysUserRole;
 import com.office.vo.system.AssignRoleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -70,20 +71,20 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Override
     public void assignUserRole(AssignRoleVo assignRoleVo) {
-        //delete the role of the user assign previously
+        // Delete the role of the user previously
         LambdaQueryWrapper<SysUserRole> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SysUserRole::getUserId, assignRoleVo.getUserId());
         sysUserRoleService.remove(wrapper);
 
-        //Assign the new roles
+        // Assign new role
         List<Long> roleIdList = assignRoleVo.getRoleIdList();
-        for (Long roleId : roleIdList){
-            if (StringUtils.isEmpty(roleId)){
-                continue;
+        for (Long roleId : roleIdList) {
+            if (roleId != null) {
+                SysUserRole sysUserRole = new SysUserRole();
+                sysUserRole.setUserId(assignRoleVo.getUserId());
+                sysUserRole.setRoleId(roleId);
+                sysUserRoleService.save(sysUserRole);
             }
-            SysUserRole sysUserRole = new SysUserRole();
-            sysUserRole.setUserId(assignRoleVo.getUserId());
-            sysUserRole.setRoleId(roleId);
         }
     }
 
