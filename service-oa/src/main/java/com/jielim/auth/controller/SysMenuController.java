@@ -54,9 +54,9 @@ public class SysMenuController {
     }
 
     @Operation(summary = "Remove permission by id")
-    @DeleteMapping("")
-    public Result removeById(@PathVariable Long id){
-        boolean isSuccess = sysMenuService.removeById(id);
+    @DeleteMapping("/{id}")
+    public Result removeMenuById(@PathVariable Long id){
+        boolean isSuccess = sysMenuService.removeMenuById(id);
         return (isSuccess ? Result.ok() : Result.fail());
     }
 

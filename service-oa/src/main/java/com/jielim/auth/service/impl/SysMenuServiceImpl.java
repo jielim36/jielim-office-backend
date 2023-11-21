@@ -1,9 +1,12 @@
 package com.jielim.auth.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.jielim.auth.mapper.SysMenuMapper;
 import com.jielim.auth.service.SysMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jielim.auth.utils.MenuHelper;
+import com.jielim.common.config.exception.JielimException;
+import com.jielim.common.result.ResultCodeEnum;
 import com.office.model.system.SysMenu;
 import org.springframework.stereotype.Service;
 
@@ -52,5 +55,19 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         //构建成树形结构(层级)
         List<SysMenu> resultList = MenuHelper.buildTree(sysMenuList);
         return resultList;
+    }
+
+    @Override
+    public boolean removeMenuById(Long id) {
+
+        //判断当前的Menu是否有Children，通过查询是否有某个Menu的ParentId是该Menu，如果有表示目前要删除的menu有children
+        LambdaQueryWrapper<SysMenu> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SysMenu::getParentId,id);
+        Integer childrenCount = baseMapper.selectCount(wrapper);
+        if (childrenCount > 0){//大于0表示有某个Menu的Parent是目前要删除的Menu
+            throw new JielimException(201,"Can't remove this menu because there are children menu...");
+        }
+        baseMapper.deleteById(id);
+        return true;
     }
 }
